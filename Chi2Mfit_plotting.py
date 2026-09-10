@@ -154,14 +154,16 @@ def X2_iteration(ages,errors):
     pl.fill_between(x_fill_final, 0, 1, color =(137/255, 207/255, 240/255), alpha = 0.5)
     pl.title(title)
     for i in range(0, len(ages_init)):
-        x_init = np.arange(((np.min(ages_init))-(np.mean(errors_init)*5)),((np.max(ages_init))+(np.mean(errors_init)*5)),10)
+        #x_init = np.arange(((np.min(ages_init))-(np.mean(errors_init)*5)),((np.max(ages_init))+(np.mean(errors_init)*5)),10)
+        x_init = np.arange(((np.min(ages_init))-(np.mean(errors_init)*5)),((np.max(ages_init))+(np.mean(errors_init)*5)),(np.mean(ages_init)/1000))
         y_init = (1/(errors_init[i]*np.sqrt(2*np.pi)))*(np.exp(-0.5*(((x_init-ages_init[i])/errors_init[i])**2)))
         sum_init = sum_init + y_init
 
         pl.plot(x_init, y_init, 'r', alpha = 0.5)
 
     for i in range(0, len(ages_final)):
-        x_final = np.arange(((np.min(ages_final))-(np.mean(errors_final)*5)),((np.max(ages_final))+(np.mean(errors_final)*5)),10)
+        #x_final = np.arange(((np.min(ages_final))-(np.mean(errors_final)*5)),((np.max(ages_final))+(np.mean(errors_final)*5)),10)
+        x_final = np.arange(((np.min(ages_final))-(np.mean(errors_final)*5)),((np.max(ages_final))+(np.mean(errors_final)*5)),(np.mean(ages_init)/1000))
         y_final = (1/(errors_final[i]*np.sqrt(2*np.pi)))*(np.exp(-0.5*(((x_final-ages_final[i])/errors_final[i])**2)))
         sum_final = sum_final + y_final
 
@@ -181,7 +183,7 @@ def X2_iteration(ages,errors):
 
 #here, you can generate your own dataset and run the X2_iteration function to do full analysis and
 #plot a nice fig.
-#ages1 = np.array([21000, 21100, 21200, 21300, 23000, 25000])
-#errors1 = np.array([400, 400, 400, 400, 400, 4000])
+ages1 = np.array([210, 211, 212, 213, 230, 250])
+errors1 = np.array([4, 4, 4, 4, 4, 40])
 
-#result = X2_iteration(ages1,errors1)
+result = X2_iteration(ages1,errors1)
